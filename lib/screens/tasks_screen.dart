@@ -4,15 +4,24 @@ import 'package:flutter_todo/screens/add_tasks_screen.dart';
 
 class TaskScreen extends StatelessWidget {
 
-  String text = 'SIBAA';
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          showModalBottomSheet(context: context, builder: (context) => AddTaskScreen());
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+                child: Container(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: AddTaskScreen())
+            ),
+          );
         },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
@@ -56,14 +65,14 @@ class TaskScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-
+              padding: EdgeInsets.only(left: 20, right: 5),
               height: 100,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              child: TaskLists(),
+              child: TasksList(),
             ),
           ),
         ],
@@ -71,5 +80,3 @@ class TaskScreen extends StatelessWidget {
     );
   }
 }
-
-
