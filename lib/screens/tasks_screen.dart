@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/widgets/tasks_list.dart';
 import 'package:flutter_todo/screens/add_tasks_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_todo/models/task_data.dart';
 
-class TaskScreen extends StatelessWidget {
 
+class TasksScreen extends StatelessWidget {
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: Color(0xff344955),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
@@ -19,11 +21,12 @@ class TaskScreen extends StatelessWidget {
                 child: Container(
                     padding: EdgeInsets.only(
                         bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: AddTaskScreen())
+                    child: AddTaskScreen()
+                )
             ),
           );
         },
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Color(0xff344955),
         child: Icon(Icons.add),
       ),
       body: Column(
@@ -35,26 +38,26 @@ class TaskScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 CircleAvatar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Color(0xffF9AA33),
                   radius: 30,
                   child: Icon(
                     Icons.list,
                     size: 40,
-                    color: Colors.lightBlueAccent,
+                    color: Color(0xff344955),
                   ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 Text(
-                  'To Do',
+                  '할 일',
                   style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                       color: Colors.white),
                 ),
                 Text(
-                  '12 tasks',
+                  '${Provider.of<TaskData>(context).taskCount} 가지 ',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -68,11 +71,11 @@ class TaskScreen extends StatelessWidget {
               padding: EdgeInsets.only(left: 20, right: 5),
               height: 100,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color(0xffF9AA33),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              child: TasksList(),
+              child: TaskLists(),
             ),
           ),
         ],
